@@ -1,0 +1,142 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Manter Usuario</ui:define>
+
+	<ui:define name="corpo">
+
+
+		<h:form  id="frmPesquisa">
+			<p:menubar styleClass="menubar" autoDisplay="false">
+				<p:submenu styleClass="menu" label="Atendimento" icon="ui-icon-document">
+					<p:menuitem value="Pessoa Referência"
+						url="/PessoaRef/PessoaRef.xhtml" />
+					<p:separator />
+					<p:menuitem value="Exibir Pessoa Referência"
+						url="/PessoaRef/ExibirPessoaRef.xhtml" />
+					<p:separator />
+					<p:menuitem value="Sair" url="//Login.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Acompanhamento" icon="ui-icon-pencil">
+					<p:menuitem value="Fazer" icon="ui-icon-arrowreturnthick-1-w"
+						url="/Acompanhamento/Acompanhamento.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Agendamento" icon="ui-icon-gear">
+					<p:submenu label="Marca" icon="ui-icon-refresh">
+						<p:menuitem value="Data" url="//Erro.xhtml" />
+						<p:menuitem value="Local" url="//Erro.xhtml" />
+					</p:submenu>
+					<p:menuitem value="Agente de Visita" icon="ui-icon-newwin"
+						url="Erro.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Cadastrar Usuário" icon="ui-icon-gear">
+					<p:menuitem value="Usuario" icon="ui-icon-newwin"
+						url="/Usuario/Usuario.xhtml" />
+					<p:separator />
+					<p:menuitem value="Exibir Usuarios" icon="ui-icon-newwin"
+						url="/Usuario/ManterUsuario.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Ajuda" icon="ui-icon-help">
+					<p:menuitem value="Bem Vindo" url="//Erro.xhtml" />
+					<p:menuitem value="Perguntas Frequentes" url="//Erro.xhtml" />
+					<p:menuitem value="Política de Privacidade" url="//Erro.xhtml" />
+					<p:menuitem value="Sobre SUAC" url="//Erro.xhtml" />
+				</p:submenu>
+
+			</p:menubar>
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton action="#{usuarioBean.pesquisar}"
+						value="Pesquisar" update="@form " />
+					<p:inputText value="#{usuarioBean.filtro.pesquisanome}"
+						style="position:relative; left:px;"></p:inputText>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button href="Usuario.xhtml" value="Novo Usuário" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:messages autoUpdate="true"  closable="true" />
+	
+
+			<p:dataTable id="tabusuario" value="#{usuarioBean.usuarioslist}"
+				var="usuarios" style="margin: auto; width:1200px; margin-top: 20px;"
+				emptyMessage="Nenhum pedido encontrado." rows="20" paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+				<p:column headerText="Id:">
+					<h:outputText value="#{usuarios.id}" />
+				</p:column>
+
+				<p:column headerText="Nome:">
+					<h:outputText value="#{usuarios.nome}" />
+				</p:column>
+
+				<p:column headerText="Sobrenome:">
+					<h:outputText value="#{usuarios.sobrenome}" />
+				</p:column>
+
+				<p:column headerText="Endereço:">
+					<h:outputText value="#{usuarios.endereco}" />
+				</p:column>
+
+				<p:column headerText="Telefone:">
+					<h:outputText value="#{usuarios.telefone}" />
+				</p:column>
+
+
+				<p:column headerText="Senha:">
+					<h:outputText value="#{usuarios.senha}" />
+				</p:column>
+				
+				<p:column headerText="Confirmasenha:">
+					<h:outputText value="#{usuarios.confirmasenha}" />
+				</p:column>
+
+				<p:column headerText="Cpf:">
+					<h:outputText value="#{usuarios.cpf}" />
+				</p:column>
+
+				<p:column headerText="Email:">
+					<h:outputText value="#{usuarios.email}" />
+				</p:column>
+
+				<p:column style="text-align: center; width: 50px">
+					<p:button  outcome="Usuario.xhtml" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="usuarios" value="#{usuarios.id}" />
+					</p:button>
+					<p:commandButton id="ex"  icon="ui-icon-trash" title="Excluir" update=":frmPesquisa:confirmacaoExclusaoDialog"
+						oncomplete="confirmacaoExclusao.show()" process="@this">
+						<f:setPropertyActionListener value="#{usuarios}"
+							target="#{usuarioBean.usuarioSelecionado}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+
+
+			</p:dataTable>
+
+			<p:confirmDialog header="Exclusão do item"
+				message="Tem certeza que deseja excluir o Usuario #{usuarioBean.usuarioSelecionado.nome}?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="confirmacaoExclusao.hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="confirmacaoExclusao.hide();"
+					action="#{usuarioBean.excluir}" process="@this"
+					update="frmPesquisa:tabusuario" />
+			</p:confirmDialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,74 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="Tela">Tela Principal</ui:define>
+
+	<ui:define name="corpo">
+
+
+		<h:form style="margin-top: 20px">
+			<p:menubar styleClass="menubar" autoDisplay="false">
+				<p:submenu styleClass="menu" label="Atendimento"
+					icon="ui-icon-document">
+					<p:menuitem value="Pessoa Referência"
+						url="/PessoaRef/PessoaRef.xhtml" />
+					<p:separator />
+					<p:menuitem value="Exibir Pessoa Referência"
+						url="/PessoaRef/ExibirPessoaRef.xhtml" />
+					<p:separator />
+					<p:menuitem value="Sair" url="//Login.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Acompanhamento"
+					icon="ui-icon-pencil">
+					<p:menuitem value="Fazer" icon="ui-icon-arrowreturnthick-1-w"
+						url="//Erro.xhtml" />
+					<p:menuitem value="Desfazer" icon="ui-icon-arrowreturnthick-1-w"
+						url="//Erro.xhtml" />
+					<p:menuitem value="Refazer" icon="ui-icon-arrowreturnthick-1-e"
+						url="//Erro.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Agendamento" icon="ui-icon-gear">
+					<p:submenu label="Marca" icon="ui-icon-refresh">
+						<p:menuitem value="Data" url="//Erro.xhtml" />
+						<p:menuitem value="Local" url="//Erro.xhtml" />
+					</p:submenu>
+					<p:menuitem value="Agente de Visita" icon="ui-icon-newwin"
+						url="Erro.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Cadastrar Usuário"
+					icon="ui-icon-gear">
+					<p:menuitem value="Usuario" icon="ui-icon-newwin"
+						url="/Usuario/Usuario.xhtml" />
+					<p:separator />
+					<p:menuitem value="Exibir Usuarios" icon="ui-icon-newwin"
+						url="/Usuario/ManterUsuario.xhtml" />
+				</p:submenu>
+
+				<p:submenu styleClass="menu" label="Ajuda" icon="ui-icon-help">
+					<p:menuitem value="Bem Vindo" url="//Erro.xhtml" />
+					<p:menuitem value="Perguntas Frequentes" url="//Erro.xhtml" />
+					<p:menuitem value="Política de Privacidade" url="//Erro.xhtml" />
+					<p:menuitem value="Sobre SUAC" url="//Erro.xhtml" />
+				</p:submenu>
+
+			</p:menubar>
+
+			<p:messages autoUpdate="true" />
+		</h:form>
+		<center>
+			<div id="painel" style="border: none; width: 100%; margin-top: 20px">
+				<h:graphicImage styleClass="telaprincipal" library="images"
+					name="telaprincipal.jpg" />
+			</div>
+		</center>
+
+
+	</ui:define>
+</ui:composition>
