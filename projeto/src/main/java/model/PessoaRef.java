@@ -275,6 +275,11 @@ public class PessoaRef implements Serializable{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return pessoareferencia ;
+	}
+
 
 	
     

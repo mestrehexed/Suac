@@ -25,7 +25,7 @@ public class Acompanhamento implements Serializable {
 	private String nome;
 	private String cpf;
 	private String rg;
-	private GrauParentesco parentesco;
+	private String parentesco;
 	private String datanascimento;
 	private PessoaRef pessoaref;
 	
@@ -57,11 +57,11 @@ public class Acompanhamento implements Serializable {
 		this.rg = rg;
 	}
 	
-	@Enumerated(EnumType.STRING)
-	public GrauParentesco getParentesco() {
+	
+	public String getParentesco() {
 		return parentesco;
 	}
-	public void setParentesco(GrauParentesco parentesco) {
+	public void setParentesco(String parentesco) {
 		this.parentesco = parentesco;
 	}
 	public String getDatanascimento() {

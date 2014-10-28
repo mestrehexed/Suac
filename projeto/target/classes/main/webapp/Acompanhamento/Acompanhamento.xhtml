@@ -3,21 +3,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
 
 
 	<ui:define name="corpo">
-	
-	<f:metadata>
-	<f:event listener="#{acompanhamentoBean.inicializar}" type="preRenderView"></f:event>
-		</f:metadata>
-	
-		<h:form >
-			
+
+
+
+		<h:form>
+
 			<p:menubar styleClass="menubar" autoDisplay="false">
-				<p:submenu styleClass="menu" label="Atendimento" icon="ui-icon-document">
+				<p:submenu styleClass="menu" label="Atendimento"
+					icon="ui-icon-document">
 					<p:menuitem value="Pessoa Referência"
 						url="/PessoaRef/PessoaRef.xhtml" />
 					<p:separator />
@@ -27,9 +25,11 @@
 					<p:menuitem value="Sair" url="//Login.xhtml" />
 				</p:submenu>
 
-				<p:submenu styleClass="menu" label="Acompanhamento" icon="ui-icon-pencil">
-					<p:menuitem value="Fazer" icon="ui-icon-arrowreturnthick-1-w"	url="/Acompanhamento/Acompanhamento.xhtml" />
-					
+				<p:submenu styleClass="menu" label="Acompanhamento"
+					icon="ui-icon-pencil">
+					<p:menuitem value="Fazer" icon="ui-icon-arrowreturnthick-1-w"
+						url="/Acompanhamento/Acompanhamento.xhtml" />
+
 				</p:submenu>
 
 				<p:submenu styleClass="menu" label="Agendamento" icon="ui-icon-gear">
@@ -41,7 +41,8 @@
 						url="Erro.xhtml" />
 				</p:submenu>
 
-				<p:submenu styleClass="menu" label="Cadastrar Usuário" icon="ui-icon-gear">
+				<p:submenu styleClass="menu" label="Cadastrar Usuário"
+					icon="ui-icon-gear">
 					<p:menuitem value="Usuario" icon="ui-icon-newwin"
 						url="/Usuario/Usuario.xhtml" />
 					<p:separator />
@@ -58,18 +59,23 @@
 
 			</p:menubar>
 
-			
-			
-			
-			
-			
-			<p:fieldset styleClass="field"  legend="Acompanhar" id="grid" style=" width:954px; " >			
-				
-				<p:growl id="growl"  autoUpdate="true" />
-					<h:panelGrid columns="1" style="position:relative; left:20%">
+
+
+
+
+
+			<p:fieldset styleClass="field" legend="Acompanhar" id="grid"
+				style=" width:954px; ">
+
+				<p:growl id="growl" autoUpdate="true" />
+				<h:panelGrid columns="1" style="position:relative; left:20%">
+
+
 					<div style="margin-top: 5px">
-						<p:outputLabel styleClass="label"   value="Nome da pessoa:"  for="nome"></p:outputLabel>
-						<p:inputText styleClass="input"  required="true" id="nome" value="#{acompanhamentoBean.acompanhar.nome}"
+						<p:outputLabel styleClass="label" value="Nome da pessoa:"
+							for="nome"></p:outputLabel>
+						<p:inputText styleClass="input" required="true" id="nome"
+							value="#{acompanhamentoBean.acompanhar.nome}"
 							placeholder="Insira o nome..." size="25" />
 					</div>
 
@@ -77,51 +83,57 @@
 
 
 					<div style="margin-top: 5px">
-						<p:outputLabel styleClass="label" value="Cpf:"  for="cpf"></p:outputLabel>
-						<p:inputMask styleClass="input" required="true" id="cpf" value="#{acompanhamentoBean.acompanhar.cpf}"
+						<p:outputLabel styleClass="label" value="Cpf:" for="cpf"></p:outputLabel>
+						<p:inputMask styleClass="input" required="true" id="cpf"
+							value="#{acompanhamentoBean.acompanhar.cpf}"
 							mask="999.999.999-99" placeholder="Insira o cpf..." size="14" />
 					</div>
 
 
 					<div style="margin-top: 5px">
-						<p:outputLabel styleClass="label" value="RG:"  for="rg"></p:outputLabel>
-						<p:inputText styleClass="input" required="true" id="rg" value="#{acompanhamentoBean.acompanhar.rg}"
+						<p:outputLabel styleClass="label" value="RG:" for="rg"></p:outputLabel>
+						<p:inputText styleClass="input" required="true" id="rg"
+							value="#{acompanhamentoBean.acompanhar.rg}"
 							placeholder="Insira o rg..." size="25" />
 					</div>
 
 
-					<p:selectOneMenu value="#{acompanhamentoBean.grau}">
-					<f:selectItems value="#{acompanhamentoBean.listgrau}" var="grau" itemValue="#{grau}"/>
+					<p:selectOneMenu value="#{acompanhamentoBean.acompanhar.parentesco}">
+						<f:selectItems value="#{acompanhamentoBean.listgrau}" var="grau" />
 					</p:selectOneMenu>
 
 
 
 					<div style="margin-top: 5px">
-						<p:outputLabel styleClass="label" value="Data Nascimento:"  for="data"></p:outputLabel>
-						<p:inputText styleClass="input" required="true" id="data" type="text"
-							value="#{acompanhamentoBean.acompanhar.datanascimento}" placeholder="Insira a data de nascimento..."
-							size="20" />
+						<p:outputLabel styleClass="label" value="Data Nascimento:"
+							for="data"></p:outputLabel>
+						<p:inputText styleClass="input" required="true" id="data"
+							type="text"
+							value="#{acompanhamentoBean.acompanhar.datanascimento}"
+							placeholder="Insira a data de nascimento..." size="20" />
 					</div>
 
 
 					<div style="margin-top: 5px">
-						<p:outputLabel styleClass="label" value="Pessoa Referência:"  for="pessoa"></p:outputLabel>
-						<p:inputText styleClass="input" required="true" id="pessoa" type="text"
-							 placeholder="Insira a Pessoa..."
-							size="20" />
+						<p:selectOneMenu value="#{acompanhamentoBean.acompanhar.pessoaref}">
+							<f:selectItems value="#{pessoaRefBean.pessoalist}"
+								var="pessoalist" />
+						</p:selectOneMenu>
 					</div>
 
-			
-					
-				
-				
-					<p:panelGrid columns="2"  styleClass="botao">
+
+
+
+
+					<p:panelGrid columns="2" styleClass="botao">
 						<p:commandButton value="Menu" action="//Principal.xhtml"></p:commandButton>
-						<p:commandButton icon="ui-icon-check" update="growl"  value="Salvar" 	action="#{acompanhamentoBean.adcionaracompanhamento}"></p:commandButton>
+						<p:commandButton icon="ui-icon-check" update="growl"
+							value="Salvar"
+							action="#{acompanhamentoBean.salvar}"></p:commandButton>
 					</p:panelGrid>
-				
+
 				</h:panelGrid>
-				
+
 			</p:fieldset>
 		</h:form>
 

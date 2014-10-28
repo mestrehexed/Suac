@@ -1,18 +1,16 @@
 package controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 
+import repository.AcompanhamentoRepository;
 import model.Acompanhamento;
-import model.GrauParentesco;
-import jpa.Transactional;
-import jsf.FacesUtil;
-
 
 @Named
 @ViewScoped
@@ -22,48 +20,54 @@ public class AcompanhamentoBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	//local variaveis
+
+	// local variaveis
+	@Inject
 	private Acompanhamento acompanhar;
-	EntityManager manager;
+	// lista de parentesco
+	private List<String> listgrau;
+	private AcompanhamentoRepository reposy;
+	private String grau;
+	
 
-	private GrauParentesco grau ;
-	private Class<GrauParentesco> listgrau;
-	
-	
-	
-	public AcompanhamentoBean(){
-		acompanhar= new  Acompanhamento();
-		
-	}
-	
-	public void inicializar(){
-		
-		listgrau = (GrauParentesco.class);
-		
-		
-	}
 	
 	
 	
 	
 	
-	//local metodos
-	@Transactional
-	public String salvar(){
-		
-		manager.merge(acompanhar);
-		FacesUtil.addInfoMessage("Acompanhamento  Salvo com Sucesso!");
-		return "Acompanhamento.xhtml";
+	
+	
+	
+	
+	// contrutor
+	public AcompanhamentoBean() {
+		acompanhar = new Acompanhamento();
+
 	}
 
+	@PostConstruct
+	public void inicializar() {
+		listgrau = new ArrayList<String>();
+		listgrau.add("Mãe");
+		listgrau.add("Pai");
 
+	}
 
 	
+	// local metodos
 	
-	//local gets e sets
+	public void salvar(){
+		acompanhar= reposy.guardar(acompanhar);
+	}
 	
 	
+	
+	
+	
+	
+
+	// local gets e sets
+
 	public Acompanhamento getAcompanhar() {
 		return acompanhar;
 	}
@@ -73,40 +77,8 @@ public class AcompanhamentoBean implements Serializable {
 	}
 
 
-
-
-
-
-
-	public GrauParentesco getGrau() {
-		return grau;	
-
-
-
-
-
-
-		
-		
-	}
-
-	public Class<GrauParentesco> getListgrau() {
+	public List<String> getListgrau() {
 		return listgrau;
 	}
-
-	
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

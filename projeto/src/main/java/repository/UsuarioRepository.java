@@ -41,7 +41,7 @@ public class UsuarioRepository implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EntityManager manager;
+	EntityManager manager;
 	
 	
 	
