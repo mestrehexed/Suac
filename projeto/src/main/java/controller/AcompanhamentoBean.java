@@ -9,6 +9,8 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import jsf.FacesUtil;
+import Filter.FiltroAcompanhamento;
 import repository.AcompanhamentoRepository;
 import model.Acompanhamento;
 
@@ -22,13 +24,17 @@ public class AcompanhamentoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// local variaveis
-	@Inject
+	
 	private Acompanhamento acompanhar;
 	// lista de parentesco
 	private List<String> listgrau;
+	//lista da model de acompanhamento
+	private List<Acompanhamento> acom;
 	@Inject
 	private AcompanhamentoRepository reposy;
 	private String grau;
+	@Inject
+	private FiltroAcompanhamento filtro;
 	
 
 	
@@ -45,11 +51,11 @@ public class AcompanhamentoBean implements Serializable {
 		acompanhar = new Acompanhamento();
 
 	}
-	@Inject
+	
 	@PostConstruct
 	public void inicializar() {
 		listgrau = new ArrayList<String>();
-		listgrau.add("");
+		
 		listgrau.add("Mãe");
 		listgrau.add("Pai");
 		listgrau.add("Filho");
@@ -68,10 +74,17 @@ public class AcompanhamentoBean implements Serializable {
 	
 	// local metodos
 	
-	public void salvar(){
+	public String salvar(){
+		FacesUtil.addInfoMessage("Pessoa Salva com Sucesso!");
 		acompanhar= reposy.guardar(acompanhar);
+		return "Acompanhamento.xhtml";
+		
 	}
 	
+	@Inject
+	public void pesquisar(){
+		acom = reposy.filtrados(filtro);
+	}
 	
 	
 	
@@ -92,5 +105,26 @@ public class AcompanhamentoBean implements Serializable {
 	public List<String> getListgrau() {
 		return listgrau;
 	}
+	public List<Acompanhamento> getAcom() {
+		return acom;
+	}
+	public void setAcom(List<Acompanhamento> acom) {
+		this.acom = acom;
+	}
+	public String getGrau() {
+		return grau;
+	}
+	public FiltroAcompanhamento getFiltro() {
+		return filtro;
+	}
+	public void setFiltro(FiltroAcompanhamento filtro) {
+		this.filtro = filtro;
+	}
+	
+	
+	
+	
+	
+	
 
 }

@@ -59,7 +59,17 @@
 
 			</p:menubar>
 
-
+			<p:toolbarGroup>
+				<p:commandButton action="#{acompanhamentoBean.pesquisar}"
+					value="Pesquisar" update="@form" />
+					
+					Nome:
+				<p:inputText value="#{acompanhamentoBean.filtro.pesquisanome}"
+					style="position:relative; left:px;"></p:inputText>
+				 Parentesco:
+				<p:inputText value="#{acompanhamentoBean.filtro.id}"
+					style="position:relative; left:px;"></p:inputText>
+			</p:toolbarGroup>
 
 
 
@@ -67,14 +77,14 @@
 			<p:fieldset styleClass="field" legend="Acompanhar" id="grid"
 				style=" width:954px; ">
 
-				<p:growl id="growl" autoUpdate="true" />
+				
 				<h:panelGrid columns="1" style="position:relative; left:20%">
 
 
 					<div style="margin-top: 5px">
 						<p:outputLabel styleClass="label" value="Nome da pessoa:"
 							for="nome"></p:outputLabel>
-						<p:inputText styleClass="input" required="true" id="nome"
+						<p:inputText styleClass="input"  id="nome"
 							value="#{acompanhamentoBean.acompanhar.nome}"
 							placeholder="Insira o nome..." size="25" />
 					</div>
@@ -84,7 +94,7 @@
 
 					<div style="margin-top: 5px">
 						<p:outputLabel styleClass="label" value="Cpf:" for="cpf"></p:outputLabel>
-						<p:inputMask styleClass="input" required="true" id="cpf"
+						<p:inputMask styleClass="input" id="cpf"
 							value="#{acompanhamentoBean.acompanhar.cpf}"
 							mask="999.999.999-99" placeholder="Insira o cpf..." size="14" />
 					</div>
@@ -92,13 +102,16 @@
 
 					<div style="margin-top: 5px">
 						<p:outputLabel styleClass="label" value="RG:" for="rg"></p:outputLabel>
-						<p:inputText styleClass="input" required="true" id="rg"
+						<p:inputMask mask="(9999999999999)" styleClass="input"  id="rg"
 							value="#{acompanhamentoBean.acompanhar.rg}"
 							placeholder="Insira o rg..." size="25" />
 					</div>
 
-
-					<p:selectOneMenu value="#{acompanhamentoBean.acompanhar.parentesco}">
+					<p:outputLabel styleClass="label" value="Parentesco:"
+							></p:outputLabel>
+					<p:selectOneMenu
+						value="#{acompanhamentoBean.acompanhar.parentesco}">
+						<f:selectItem itemLabel="Selecione"/>
 						<f:selectItems value="#{acompanhamentoBean.listgrau}" var="grau" />
 					</p:selectOneMenu>
 
@@ -107,7 +120,7 @@
 					<div style="margin-top: 5px">
 						<p:outputLabel styleClass="label" value="Data Nascimento:"
 							for="data"></p:outputLabel>
-						<p:inputText styleClass="input" required="true" id="data"
+						<p:inputMask mask="99/99/9999" styleClass="input" id="data"
 							type="text"
 							value="#{acompanhamentoBean.acompanhar.datanascimento}"
 							placeholder="Insira a data de nascimento..." size="20" />
@@ -115,7 +128,11 @@
 
 
 					<div style="margin-top: 5px">
-						<p:selectOneMenu value="#{acompanhamentoBean.acompanhar.pessoaref}">
+					<p:outputLabel styleClass="label" value="Pessoa Referência"
+							></p:outputLabel>
+						<p:selectOneMenu
+							value="#{acompanhamentoBean.acompanhar.pessoaref}">
+							<f:selectItem itemLabel="Selecione"/>
 							<f:selectItems value="#{pessoaRefBean.pessoalist}"
 								var="pessoalist" />
 						</p:selectOneMenu>
@@ -127,15 +144,54 @@
 
 					<p:panelGrid columns="2" styleClass="botao">
 						<p:commandButton value="Menu" action="//Principal.xhtml"></p:commandButton>
-						<p:commandButton icon="ui-icon-check" update="growl"
-							value="Salvar"
-							action="#{acompanhamentoBean.salvar}"></p:commandButton>
+						<p:commandButton icon="ui-icon-check" 
+							value="Salvar" update="@form" action="#{acompanhamentoBean.salvar}"></p:commandButton>
 					</p:panelGrid>
 
 				</h:panelGrid>
 
 			</p:fieldset>
-		</h:form>
 
+
+
+
+
+			<p:dataTable id="tabacompanhamento" var="acom"
+				value="#{acompanhamentoBean.acom}"
+				style="margin: auto;  margin-top: 20px;"
+				emptyMessage="Nenhuma informação encontrada." rows="5" paginator="true"
+				paginatorAlwaysVisible="true" paginatorPosition="bottom">
+
+				<p:column headerText="ID">
+					<h:outputText value="#{acom.id}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{acom.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{acom.cpf}" />
+				</p:column>
+				
+				<p:column headerText="RG">
+					<h:outputText value="#{acom.rg}" />
+				</p:column>
+				
+				<p:column headerText="Parentesco">
+					<h:outputText value="#{acom.parentesco}" />
+				</p:column>
+				
+				<p:column headerText="Data de Nascimento">
+					<h:outputText value="#{acom.datanascimento}" />
+				</p:column>
+				
+				<p:column headerText="Pessoa Referência">
+					<h:outputText value="#{acom.pessoaref}" />
+				</p:column>
+
+
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

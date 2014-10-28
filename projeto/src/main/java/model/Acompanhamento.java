@@ -1,10 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -73,6 +72,7 @@ public class Acompanhamento implements Serializable {
 	
 	@ManyToOne
 	public PessoaRef getPessoaref() {
+		
 		return pessoaref;
 	}
 	public void setPessoaref(PessoaRef pessoaref) {
@@ -101,6 +101,12 @@ public class Acompanhamento implements Serializable {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Acompanhamento [id=" + nome + "]";
+	}
+	
+	
 
 	
 	

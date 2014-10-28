@@ -8,8 +8,6 @@ import javax.persistence.EntityManager;
 
 import jpa.Transactional;
 import model.Acompanhamento;
-import model.PessoaRef;
-import model.Usuario;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -19,8 +17,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import Filter.FiltroAcompanhamento;
-import Filter.FiltroPessoa;
-import Filter.FiltroUsuario;
+
+
 
 public class AcompanhamentoRepository implements Serializable {
 
@@ -34,17 +32,21 @@ public class AcompanhamentoRepository implements Serializable {
 
 	// Filtra os dados da Pesquisa da pessoa ref.
 	@SuppressWarnings("unchecked")
-	public List<Usuario> filtrados(FiltroAcompanhamento filtro) {
+	public List<Acompanhamento> filtrados(FiltroAcompanhamento filtro) {
 
 		Session sessao = manager.unwrap(Session.class);
-		Criteria cri = sessao.createCriteria(PessoaRef.class);
-
-		if (StringUtils.isNotBlank(filtro.getPesquisanome())) {
-			cri.add(Restrictions.ilike("nome", filtro.getPesquisanome(),
-					MatchMode.ANYWHERE));
-
-		}
-
+		Criteria cri = sessao.createCriteria(Acompanhamento.class);
+	
+		if(StringUtils.isNotBlank(filtro.getPesquisanome())){
+			cri.add(Restrictions.ilike("nome", filtro.getPesquisanome(), MatchMode.ANYWHERE  ));
+		
+		}	
+		
+		if(StringUtils.isNotBlank(filtro.getId())){
+			cri.add(Restrictions.ilike("parentesco", filtro.getId(), MatchMode.ANYWHERE  ));
+		
+		}	
+		
 		return cri.addOrder(Order.asc("nome")).list();
 
 	}

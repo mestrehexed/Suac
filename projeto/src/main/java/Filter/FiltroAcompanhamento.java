@@ -11,6 +11,7 @@ public class FiltroAcompanhamento implements Serializable {
 
 	
 	private String pesquisanome;
+	private String id;
 
 
 	public String getPesquisanome() {
@@ -20,6 +21,16 @@ public class FiltroAcompanhamento implements Serializable {
 
 	public void setPesquisanome(String pesquisanome) {
 		this.pesquisanome = pesquisanome;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
