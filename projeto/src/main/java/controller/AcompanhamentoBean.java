@@ -26,6 +26,7 @@ public class AcompanhamentoBean implements Serializable {
 	private Acompanhamento acompanhar;
 	// lista de parentesco
 	private List<String> listgrau;
+	@Inject
 	private AcompanhamentoRepository reposy;
 	private String grau;
 	
@@ -44,12 +45,23 @@ public class AcompanhamentoBean implements Serializable {
 		acompanhar = new Acompanhamento();
 
 	}
-
+	@Inject
 	@PostConstruct
 	public void inicializar() {
 		listgrau = new ArrayList<String>();
+		listgrau.add("");
 		listgrau.add("Mãe");
 		listgrau.add("Pai");
+		listgrau.add("Filho");
+		listgrau.add("Filha");
+		listgrau.add("Primo");
+		listgrau.add("Prima");
+		listgrau.add("Tio");
+		listgrau.add("Tia");
+		listgrau.add("Irmão");
+		listgrau.add("Irmã");
+		listgrau.add("Avô");
+		listgrau.add("Avó");
 
 	}
 
