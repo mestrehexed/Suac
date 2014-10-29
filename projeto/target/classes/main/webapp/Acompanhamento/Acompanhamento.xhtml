@@ -62,9 +62,11 @@
 			<p:toolbarGroup>
 				<p:commandButton action="#{acompanhamentoBean.pesquisar}"
 					value="Pesquisar" update="@form" />
+					
+					Nome:
 				<p:inputText value="#{acompanhamentoBean.filtro.pesquisanome}"
 					style="position:relative; left:px;"></p:inputText>
-				
+				 Parentesco:
 				<p:inputText value="#{acompanhamentoBean.filtro.id}"
 					style="position:relative; left:px;"></p:inputText>
 			</p:toolbarGroup>
@@ -185,7 +187,7 @@
 				</p:column>
 				
 				<p:column headerText="Pessoa Referência">
-					<h:outputText value="#{acom.pessoaref}" />
+					<h:outputText value="#{acom.pessoaref.pessoareferencia}" />
 				</p:column>
 
 
