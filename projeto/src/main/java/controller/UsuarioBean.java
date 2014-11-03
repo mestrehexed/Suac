@@ -128,9 +128,7 @@ public class UsuarioBean implements Serializable {
 	// colocar o " @INJECT"
 	@Inject
 	public void pesquisar() {
-
 		usuarioslist = usuarioreposy.filtrados(filtro);
-
 	}
 	
 		

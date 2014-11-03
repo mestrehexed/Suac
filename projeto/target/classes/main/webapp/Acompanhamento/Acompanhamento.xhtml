@@ -11,7 +11,7 @@
 
 
 
-		<h:form>
+		<h:form id="frmPesquisa">
 
 			<p:menubar styleClass="menubar" autoDisplay="false">
 				<p:submenu styleClass="menu" label="Atendimento"
@@ -189,8 +189,28 @@
 					<h:outputText value="#{acom.pessoaref.pessoareferencia}" />
 				</p:column>
 
+				<p:column style="text-align: center; width: 50px">
+
+					<p:commandButton id="ex" icon="ui-icon-trash" title="Excluir"
+						update=":frmPesquisa:confirmacaoExclusaoDialog"
+						oncomplete="confirmacaoExclusao.show()" process="@this">
+						<f:setPropertyActionListener value="#{acom}"
+							target="#{acompanhamentoBean.acomSelecionado}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
 
 			</p:dataTable>
+
+			<p:confirmDialog header="Exclusão do item"
+				message="Tem certeza que deseja excluir ?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="confirmacaoExclusao.hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="confirmacaoExclusao.hide();"
+					action="#{acompanhamentoBean.excluir}" process="@this"
+					update="frmPesquisa:tabacompanhamento" />
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>
