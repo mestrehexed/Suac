@@ -52,7 +52,7 @@ public class UsuarioBean implements Serializable {
 	private FiltroUsuario filtro;
 	@Inject
 	private ServiceUsuario usuarioservice;
-	@Inject
+	
 	private Usuario usuarioSelecionado;
 	
 	

@@ -25,30 +25,28 @@ public class AcompanhamentoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// local variaveis
-	@Inject
+	
 	private Acompanhamento acompanhar;
 	// lista de parentesco
 	private List<String> listgrau;
-	private List<Acompanhamento> listgrau2;
 	private String listgrau3;
 	// lista da model de acompanhamento
 	private List<Acompanhamento> acompanhamento;
 	@Inject
 	private AcompanhamentoRepository reposy;
 	private String grau;
-	@Inject
+	
 	private FiltroAcompanhamento filtro;
-	@Inject
-	private Acompanhamento acomSelecionado;
+	
 
 	
 	
-	public void excluir(){
-		reposy.remover(acomSelecionado);
-		listgrau2.remove(acomSelecionado);
-		 listgrau3 = acomSelecionado.getNome().toString();
+	public String excluir(){
+		reposy.remover(acompanhar);
+		 listgrau3 = acompanhar.getNome().toString();
 		FacesUtil.addInfoMessage("Acompanhamento " + listgrau3
 				+ " excluído com sucesso.");
+		return "Acompanhamento.xhtml";
 	}
 
 	// contrutor
@@ -125,21 +123,6 @@ public class AcompanhamentoBean implements Serializable {
 		this.filtro = filtro;
 	}
 
-
-
-	public Acompanhamento getAcomSelecionado() {
-		return acomSelecionado;
-	}
-
-	public void setAcomSelecionado(Acompanhamento acomSelecionado) {
-		this.acomSelecionado = acomSelecionado;
-	}
-
-	public List<Acompanhamento> getListgrau2() {
-		return listgrau2;
-	}
-
-	
 
 	public String getListgrau3() {
 		return listgrau3;

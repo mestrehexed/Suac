@@ -8,7 +8,10 @@
 
 
 	<ui:define name="corpo">
-
+	
+		<f:metadata>
+			<o:viewParam name="acom" value="#{acompanhamentoBean.acompanhar}"></o:viewParam>
+		</f:metadata>
 
 
 		<h:form id="frmPesquisa">
@@ -59,7 +62,7 @@
 
 			</p:menubar>
 
-
+			<p:messages autoUpdate="true"/>
 			<p:toolbarGroup>
 				<p:commandButton action="#{acompanhamentoBean.pesquisar}"
 					value="Pesquisar" update="@form" />
@@ -190,12 +193,15 @@
 				</p:column>
 
 				<p:column style="text-align: center; width: 50px">
-
+					<p:button outcome="Acompanhamento.xhtml" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="acom" value="#{acom.id}" />
+					</p:button>
 					<p:commandButton id="ex" icon="ui-icon-trash" title="Excluir"
 						update=":frmPesquisa:confirmacaoExclusaoDialog"
 						oncomplete="confirmacaoExclusao.show()" process="@this">
 						<f:setPropertyActionListener value="#{acom}"
-							target="#{acompanhamentoBean.acomSelecionado}"></f:setPropertyActionListener>
+							target="#{acompanhamentoBean.acompanhar}"></f:setPropertyActionListener>
 					</p:commandButton>
 				</p:column>
 
@@ -208,8 +214,8 @@
 					onclick="confirmacaoExclusao.hide(); return false;" />
 				<p:commandButton value="Sim"
 					oncomplete="confirmacaoExclusao.hide();"
-					action="#{acompanhamentoBean.excluir}" process="@this"
-					update="frmPesquisa:tabacompanhamento" />
+					action="#{acompanhamentoBean.excluir()}" process="@this"
+					update=":frmPesquisa:tabacompanhamento" />
 			</p:confirmDialog>
 		</h:form>
 	</ui:define>
