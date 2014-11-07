@@ -103,12 +103,14 @@ public class AcompanhamentoBean implements Serializable {
 		return listgrau;
 	}
 
-	public List<Acompanhamento> getAcom() {
+	
+
+	public List<Acompanhamento> getAcompanhamento() {
 		return acompanhamento;
 	}
 
-	public void setAcom(List<Acompanhamento> acom) {
-		this.acompanhamento = acom;
+	public void setAcompanhamento(List<Acompanhamento> acompanhamento) {
+		this.acompanhamento = acompanhamento;
 	}
 
 	public String getGrau() {
