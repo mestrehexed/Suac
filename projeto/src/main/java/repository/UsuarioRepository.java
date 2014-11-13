@@ -5,7 +5,6 @@
  */
 package repository;
 
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -42,75 +41,76 @@ public class UsuarioRepository implements Serializable {
 
 	@Inject
 	EntityManager manager;
-	
-	
-	
+
+	private Usuario u;
 	
 	// METODOS
-	
-	//Localiza por ID
+
+	// Localiza por ID
 	public Usuario porId(Long id) {
 		return manager.find(Usuario.class, id);
 	}
-	
-	
-	//Localiza Raizes da Classe
+
+
+
+	// Localiza Raizes da Classe
 	public List<Usuario> raizes() {
-		return manager.createQuery("from Usuario", Usuario.class).getResultList();
-	}
-	
-		// Seleciona Pelo nome da Coluna da tabela
-		public Usuario porUsuario(String nome){
-		
-		try{
-			
-			return manager.createQuery("from Usuario where upper(nome)= :nome", Usuario.class).
-					setParameter("nome", nome.toUpperCase()).getSingleResult();
-		}catch(NoResultException e){
-			return null;
-		}
-		
-		
+		return manager.createQuery("from Usuario", Usuario.class)
+				.getResultList();
 	}
 
-		// salva um Objeto
-		@Transactional
-		public Usuario guardar(Usuario usuario) {
-		
-			return manager.merge(usuario);
-		
-			
+	// Seleciona Pelo nome da Coluna da tabela
+	public Usuario porUsuario(String nome) {
+
+		try {
+
+			return manager
+					.createQuery("from Usuario where upper(nome)= :nome",
+							Usuario.class)
+					.setParameter("nome", nome.toUpperCase()).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
 		}
-		
-	
-		//Filtra os dados da Pesquisa.
+
+	}
+
+	// salva um Objeto
+	@Transactional
+	public Usuario guardar(Usuario usuario) {
+
+		return manager.merge(usuario);
+
+	}
+
+	// Filtra os dados da Pesquisa.
 	@SuppressWarnings("unchecked")
-	public List<Usuario> filtrados(FiltroUsuario filtro){
-		
+	public List<Usuario> filtrados(FiltroUsuario filtro) {
+
 		Session sessao = manager.unwrap(Session.class);
 		Criteria cri = sessao.createCriteria(Usuario.class);
-		
-		if(StringUtils.isNotBlank(filtro.getPesquisanome())){
-		cri.add(Restrictions.ilike("nome", filtro.getPesquisanome(), MatchMode.ANYWHERE  ));
-	
-	}
-	
+
+		if (StringUtils.isNotBlank(filtro.getPesquisanome())) {
+			cri.add(Restrictions.ilike("nome", filtro.getPesquisanome(),
+					MatchMode.ANYWHERE));
+
+		}
+
 		return cri.addOrder(Order.asc("nome")).list();
-	
+
 	}
-	
-	 @Transactional
-	public void remover(Usuario usuario){
-		try{
-		usuario = porId(usuario.getId()); 
-		manager.remove(usuario);
-		manager.flush();
-		}catch(PersistenceException e){
+
+	@Transactional
+	public void remover(Usuario usuario) {
+		try {
+			usuario = porId(usuario.getId());
+			manager.remove(usuario);
+			manager.flush();
+		} catch (PersistenceException e) {
 			throw new NegocioException("Esse Item não pode ser excluido");
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 }

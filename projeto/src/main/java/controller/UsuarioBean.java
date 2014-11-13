@@ -4,7 +4,6 @@
  */
 package controller;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,7 +23,6 @@ import repository.UsuarioRepository;
 import service.ServiceUsuario;
 import Filter.FiltroUsuario;
 
-
 /**
  *
  * @author Sérgio
@@ -33,8 +31,6 @@ import Filter.FiltroUsuario;
 @ViewScoped
 @Named
 public class UsuarioBean implements Serializable {
-
-	
 
 	/**
 	 * 
@@ -52,21 +48,14 @@ public class UsuarioBean implements Serializable {
 	private FiltroUsuario filtro;
 	@Inject
 	private ServiceUsuario usuarioservice;
-	
 	private Usuario usuarioSelecionado;
-	
-	
-	private  String usuarioSelecionado2;
-	
-	
+	private String usuarioSelecionado2;
 	private Session sessao;
-	
-	
 	private String email;
 	private String senha;
-	
-	
-	
+	private String recuemail;
+	private String recucpf;
+	private List<String> recuperar;
 
 	// contrutor
 	public UsuarioBean() {
@@ -74,55 +63,58 @@ public class UsuarioBean implements Serializable {
 		filtro = new FiltroUsuario();
 
 	}
-	
-	
-	
-	
-	
-	
 
 	// METODOS
 	// Para Enviar os Dados Certo Para o Banco Colocar Em Modo @View Scoped
-	
+
 	public String adicionarUsuario() {
-		
-		if(u.getSenha().equals(u.getConfirmasenha())){
-		     FacesUtil.addInfoMessage("Usuario Salvo com Sucesso!");
-		     
-		      this.u = usuarioservice.salvar(this.u);
-		}else{
-		     FacesUtil.addErrorMessage("Senhas Não Conferem!");
-				}
-		
-		return "";
-	
-	}
-	
-	@Inject
-	public String autentica(){
-		sessao =manager.unwrap(Session.class);
-		Criteria cri = sessao.createCriteria(Usuario.class);
-		cri.add(Restrictions.eq("email", getEmail())).add(Restrictions.eq("senha", getSenha())).uniqueResult();
-		usuarioslist=cri.list();
-		
-		
-		
-		if(usuarioslist.size()>0){
-			FacesUtil.addInfoMessage("Bem Vindo!" );
-			return "Principal.xhtml";
-		}else{
-			return "//Erro.xhtml";
-			
+
+		if (u.getSenha().equals(u.getConfirmasenha())) {
+			FacesUtil.addInfoMessage("Usuario Salvo com Sucesso!");
+
+			this.u = usuarioservice.salvar(this.u);
+		} else {
+			FacesUtil.addErrorMessage("Senhas Não Conferem!");
 		}
-		
-		
+
+		return "";
+
 	}
-	
-	
-	
-	
-	
-	
+
+	@Inject
+	public String autentica() {
+		sessao = manager.unwrap(Session.class);
+		Criteria cri = sessao.createCriteria(Usuario.class);
+		cri.add(Restrictions.eq("email", getEmail()))
+				.add(Restrictions.eq("senha", getSenha())).uniqueResult();
+		usuarioslist = cri.list();
+
+		if (usuarioslist.size() > 0) {
+			FacesUtil.addInfoMessage("Bem Vindo!");
+			return "Principal.xhtml";
+		} else {
+			return "//Erro.xhtml";
+
+		}
+
+	}
+
+	public String listRecuperarLogin() {
+		Session sessao = manager.unwrap(Session.class);
+		Criteria cri = sessao.createCriteria(Usuario.class);
+		cri.add(Restrictions.eq("email", getRecuemail()));
+		cri.add(Restrictions.eq("cpf", getRecucpf()));
+		recuperar = cri.list();
+		if (recuperar.size() > 0) {
+			
+			
+			return "resultadosenha.xhtml";
+
+		} else {
+			return "Login.xhtml";
+		}
+
+	}
 
 	// para aparecer os dados no DATATABLE utilizando esses filtros precisa
 	// colocar o " @INJECT"
@@ -130,18 +122,15 @@ public class UsuarioBean implements Serializable {
 	public void pesquisar() {
 		usuarioslist = usuarioreposy.filtrados(filtro);
 	}
-	
-		
-	public void excluir(){
+
+	public void excluir() {
 		usuarioreposy.remover(usuarioSelecionado);
 		usuarioslist.remove(usuarioSelecionado);
-		 usuarioSelecionado2 = usuarioSelecionado.getNome().toString();
+		usuarioSelecionado2 = usuarioSelecionado.getNome().toString();
 		FacesUtil.addInfoMessage("Usuario " + usuarioSelecionado2
 				+ " excluído com sucesso.");
 	}
 
-	
-	
 	// Gets e Sets
 
 	public Usuario getU() {
@@ -153,12 +142,9 @@ public class UsuarioBean implements Serializable {
 
 	}
 
-
 	public FiltroUsuario getFiltro() {
 		return filtro;
 	}
-
-	
 
 	public List<Usuario> getUsuarioslist() {
 		return usuarioslist;
@@ -188,13 +174,32 @@ public class UsuarioBean implements Serializable {
 		this.senha = senha;
 	}
 
+	public String getRecuemail() {
+		// recuemail = u.getEmail();
+		return recuemail;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
+	public void setRecuemail(String recuemail) {
+		this.recuemail = recuemail;
+	}
+
+	public String getRecucpf() {
+
+		// recucpf= u.getCpf();
+
+		return recucpf;
+	}
+
+	public void setRecucpf(String recucpf) {
+		this.recucpf = recucpf;
+	}
+
+	public List getRecuperar() {
+		return recuperar;
+	}
+
+	public void setRecuperar(List recuperar) {
+		this.recuperar = recuperar;
+	}
+
 }

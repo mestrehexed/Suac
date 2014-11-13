@@ -72,6 +72,8 @@ public class AcompanhamentoBean implements Serializable {
 		listgrau.add("Irmã");
 		listgrau.add("Avô");
 		listgrau.add("Avó");
+		listgrau.add("Esposo");
+		listgrau.add("Esposa");
 
 	}
 
@@ -83,6 +85,8 @@ public class AcompanhamentoBean implements Serializable {
 		return "Acompanhamento.xhtml";
 
 	}
+	
+
 
 	@Inject
 	public void pesquisar() {

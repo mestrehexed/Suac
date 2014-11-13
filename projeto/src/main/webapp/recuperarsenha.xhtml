@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="Tela">Tela Principal</ui:define>
+	
 
 	<ui:define name="corpo">
         <h:outputStylesheet library="css" name="sistema.css"/>
@@ -13,17 +13,17 @@
     	<div id="login-dialog">
     		<h1>Login</h1>
     		<p:messages autoUpdate="true"/>
-    		<h:form id="frm">
+    		<h:form >
     			<h:panelGrid columns="2" styleClass="grid-login">
     				<p:outputLabel value="E-mail" />
-    				<p:inputText value="#{usuarioBean.email}" size="30" />
+    				<p:inputText value="#{usuarioBean.recuemail}" size="30" />
     				
-    				<p:outputLabel value="Senha" />
-    				<p:password value="#{usuarioBean.senha}" size="30" />
+    				<p:outputLabel value="CPF" />
+    				<p:inputMask mask="999.999.999-99" value="#{usuarioBean.recucpf}"  size="30" />
     				
     				<h:panelGroup/>
-    				<p:commandButton action="#{usuarioBean.autentica}"  value="Login" />
-    				<p:button outcome="recuperarsenha.xhtml"  value="Recuperar Senha" />
+    				<p:commandButton action="#{usuarioBean.listRecuperarLogin()}"  value="Recuperar" />
+    				
     			</h:panelGrid>
     		</h:form>
     	</div>

@@ -1,0 +1,158 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+
+
+	<ui:define name="corpo">
+		<h:form id="frmPesquisa">
+			<br></br>
+			<p:outputLabel value="Sabe Ler e Escrever?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question1}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+
+			<br></br>
+			<p:outputLabel value="Estuda?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question2}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+
+			<br></br>
+			<p:outputLabel value="Possui Carteira de Trabalho?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question3}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+
+			<br></br>
+			<p:outputLabel value="Possui Qualificação Profissional?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question4}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Tem alguma Deficiencia?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question5}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Já foi preso?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question6}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Já contraiu catapora?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question7}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Já teve dengue?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question8}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value=" Recebe algum auxilio do governo?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question9}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value=" Possui companheiro?" />
+			<p:selectOneRadio value="#{pessoaRefBean.p.question10}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<p:commandButton  value="Salvar" action="#{pessoaRefBean.adcionarPessoa}"></p:commandButton>
+					
+			<p:dataTable id="tabquestionref" var="questref"
+				value="#{pessoaRefBean.pessoalist}"
+				style="margin: auto;  margin-top: 20px;"
+				emptyMessage="Nenhuma informação encontrada." rows="5"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom">
+
+				<p:column headerText="ID">
+					<h:outputText value="#{questref.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{quest.pessoareferencia}" />
+				</p:column>
+				<p:column headerText="Questão 1">
+					<h:outputText value="#{questref.question1}" />
+				</p:column>
+				<p:column headerText="Questão 2">
+					<h:outputText value="#{questref.question2}" />
+				</p:column>
+				<p:column headerText="Questão 3">
+					<h:outputText value="#{questref.question3}" />
+				</p:column>
+				<p:column headerText="Questão 4">
+					<h:outputText value="#{questref.question4}" />
+				</p:column>
+				<p:column headerText="Questão 5">
+					<h:outputText value="#{questref.question5}" />
+				</p:column>
+				<p:column headerText="Questão 6">
+					<h:outputText value="#{questref.question6}" />
+				</p:column>
+				<p:column headerText="Questão 7">
+					<h:outputText value="#{questref.question7}" />
+				</p:column>
+				<p:column headerText="Questão 8">
+					<h:outputText value="#{questref.question8}" />
+				</p:column>
+				<p:column headerText="Questão 9">
+					<h:outputText value="#{questref.question9}" />
+				</p:column>
+				<p:column headerText="Questão 10">
+					<h:outputText value="#{questref.question10}" />
+				</p:column>
+
+				
+
+			</p:dataTable>
+
+			
+
+
+
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

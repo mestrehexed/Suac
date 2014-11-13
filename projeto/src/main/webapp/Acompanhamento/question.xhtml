@@ -1,0 +1,178 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+
+
+	<ui:define name="corpo">
+		<h:form id="frmPesquisa">
+			<br></br>
+			<p:outputLabel value="Sabe Ler e Escrever?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question1}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+
+			<br></br>
+			<p:outputLabel value="Estuda?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question2}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+
+			<br></br>
+			<p:outputLabel value="Possui Carteira de Trabalho?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question3}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+
+			<br></br>
+			<p:outputLabel value="Possui Qualificação Profissional?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question4}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Tem alguma Deficiencia?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question5}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Já foi preso?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question6}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Já contraiu catapora?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question7}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value="Já teve dengue?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question8}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value=" Recebe algum auxilio do governo?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question9}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<br></br>
+			<p:outputLabel value=" Possui companheiro?" />
+			<p:selectOneRadio value="#{acompanhamentoBean.acompanhar.question10}"
+				required="true">
+				<f:selectItem itemLabel="Sim" itemValue="Sim" />
+				<f:selectItem itemLabel="Não" itemValue="Não" />
+			</p:selectOneRadio>
+			<p:inputTextarea />
+
+			<p:commandButton  value="Salvar" action="#{acompanhamentoBean.salvar}"></p:commandButton>
+					
+			<p:dataTable id="tabquestion" var="quest"
+				value="#{acompanhamentoBean.acompanhamento}"
+				style="margin: auto;  margin-top: 20px;"
+				emptyMessage="Nenhuma informação encontrada." rows="5"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom">
+
+				<p:column headerText="ID">
+					<h:outputText value="#{quest.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{quest.nome}" />
+				</p:column>
+				<p:column headerText="Questão 1">
+					<h:outputText value="#{quest.question1}" />
+				</p:column>
+				<p:column headerText="Questão 2">
+					<h:outputText value="#{quest.question2}" />
+				</p:column>
+				<p:column headerText="Questão 3">
+					<h:outputText value="#{quest.question3}" />
+				</p:column>
+				<p:column headerText="Questão 4">
+					<h:outputText value="#{quest.question4}" />
+				</p:column>
+				<p:column headerText="Questão 5">
+					<h:outputText value="#{quest.question5}" />
+				</p:column>
+				<p:column headerText="Questão 6">
+					<h:outputText value="#{quest.question6}" />
+				</p:column>
+				<p:column headerText="Questão 7">
+					<h:outputText value="#{quest.question7}" />
+				</p:column>
+				<p:column headerText="Questão 8">
+					<h:outputText value="#{quest.question8}" />
+				</p:column>
+				<p:column headerText="Questão 9">
+					<h:outputText value="#{quest.question9}" />
+				</p:column>
+				<p:column headerText="Questão 10">
+					<h:outputText value="#{quest.question10}" />
+				</p:column>
+
+				<p:column style="text-align: center; width: 50px">
+					<p:button outcome="Acompanhamento.xhtml" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="acom" value="#{acom.id}" />
+					</p:button>
+					<p:commandButton id="ex" icon="ui-icon-trash" title="Excluir"
+						update=":frmPesquisa:confirmacaoExclusaoDialog"
+						oncomplete="confirmacaoExclusao.show()" process="@this">
+						<f:setPropertyActionListener value="#{acom}"
+							target="#{acompanhamentoBean.acompanhar}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog header="Exclusão do item"
+				message="Tem certeza que deseja excluir ?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="confirmacaoExclusao.hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="confirmacaoExclusao.hide();"
+					action="#{acompanhamentoBean.excluir()}" process="@this"
+					update=":frmPesquisa:tabquestion" />
+			</p:confirmDialog>
+
+
+
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

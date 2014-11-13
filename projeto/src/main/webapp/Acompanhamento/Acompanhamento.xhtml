@@ -193,6 +193,10 @@
 				</p:column>
 
 				<p:column style="text-align: center; width: 50px">
+				<p:button outcome="question.xhtml" icon="ui-icon-person"
+						title="Acompanhamento">
+						<f:param name="acom" value="#{acom.id}" />
+					</p:button>
 					<p:button outcome="Acompanhamento.xhtml" icon="ui-icon-pencil"
 						title="Editar">
 						<f:param name="acom" value="#{acom.id}" />
