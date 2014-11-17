@@ -56,12 +56,18 @@ public class AcompanhamentoRepository implements Serializable {
 
 	// salva um Objeto
 	@Transactional
-	public Acompanhamento guardar(Acompanhamento pessoa) {
+	public Acompanhamento guardar1(Acompanhamento pessoa) {
 		return manager.merge(pessoa);
 
 	}
 
+	// salva um Objeto por id
+	@Transactional
+	public Acompanhamento guardar(Acompanhamento pessoa) {
+		pessoa = porId(pessoa.getId());
+		return manager.merge(pessoa);
 
+	}
 
 	@Transactional
 	public void remover(Acompanhamento pessoa) {

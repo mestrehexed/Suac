@@ -68,7 +68,7 @@
 			<p:messages autoUpdate="true"  closable="true" />
 	
 
-			<p:dataTable id="tabusuario" value="#{usuarioBean.usuarioslist}"
+			<p:dataTable id="tabusuarios" value="#{usuarioBean.usuarioslist}"
 				var="usuarios" style="margin: auto; width:1200px; margin-top: 20px;"
 				emptyMessage="Nenhum pedido encontrado." rows="10" paginator="true"
 				paginatorAlwaysVisible="true" paginatorPosition="bottom">
@@ -133,7 +133,7 @@
 				<p:commandButton value="Sim"
 					oncomplete="confirmacaoExclusao.hide();"
 					action="#{usuarioBean.excluir}" process="@this"
-					update="frmPesquisa:tabusuario" />
+					update="frmPesquisa:tabusuarios" />
 			</p:confirmDialog>
 
 

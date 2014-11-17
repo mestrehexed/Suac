@@ -42,6 +42,7 @@ public class UsuarioBean implements Serializable {
 	@Inject
 	private Usuario u;
 	private List<Usuario> usuarioslist;
+	private List<Usuario> usuarioslist2;
 	@Inject
 	private UsuarioRepository usuarioreposy;
 	@Inject
@@ -87,9 +88,9 @@ public class UsuarioBean implements Serializable {
 		Criteria cri = sessao.createCriteria(Usuario.class);
 		cri.add(Restrictions.eq("email", getEmail()))
 				.add(Restrictions.eq("senha", getSenha())).uniqueResult();
-		usuarioslist = cri.list();
+		usuarioslist2 = cri.list();
 
-		if (usuarioslist.size() > 0) {
+		if (usuarioslist2.size() > 0) {
 			FacesUtil.addInfoMessage("Bem Vindo!");
 			return "Principal.xhtml";
 		} else {
@@ -106,8 +107,7 @@ public class UsuarioBean implements Serializable {
 		cri.add(Restrictions.eq("cpf", getRecucpf()));
 		recuperar = cri.list();
 		if (recuperar.size() > 0) {
-			
-			
+
 			return "resultadosenha.xhtml";
 
 		} else {
@@ -200,6 +200,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setRecuperar(List recuperar) {
 		this.recuperar = recuperar;
+	}
+
+	public List<Usuario> getUsuarioslist2() {
+		return usuarioslist2;
+	}
+
+	public void setUsuarioslist2(List<Usuario> usuarioslist2) {
+		this.usuarioslist2 = usuarioslist2;
 	}
 
 }

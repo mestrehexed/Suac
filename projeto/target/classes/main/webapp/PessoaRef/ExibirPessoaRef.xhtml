@@ -1,18 +1,19 @@
 <ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="titulo">Pesquisa de pedidos</ui:define>
-    
-    <ui:define name="corpo">
-    	<h:form id="frmPesquisa">
-	    	
-	    	
-	    	<p:menubar styleClass="menubar" autoDisplay="false">
-				<p:submenu styleClass="menu" label="Atendimento" icon="ui-icon-document">
+	<ui:define name="titulo">Pesquisa de pedidos</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmPesquisa">
+
+
+			<p:menubar styleClass="menubar" autoDisplay="false">
+				<p:submenu styleClass="menu" label="Atendimento"
+					icon="ui-icon-document">
 					<p:menuitem value="Pessoa Referência"
 						url="/PessoaRef/PessoaRef.xhtml" />
 					<p:separator />
@@ -22,10 +23,11 @@
 					<p:menuitem value="Sair" url="//Login.xhtml" />
 				</p:submenu>
 
-				<p:submenu styleClass="menu" label="Acompanhamento" icon="ui-icon-pencil">
+				<p:submenu styleClass="menu" label="Acompanhamento"
+					icon="ui-icon-pencil">
 					<p:menuitem value="Fazer" icon="ui-icon-arrowreturnthick-1-w"
 						url="/Acompanhamento/Acompanhamento.xhtml" />
-					
+
 				</p:submenu>
 
 				<p:submenu styleClass="menu" label="Agendamento" icon="ui-icon-gear">
@@ -37,7 +39,8 @@
 						url="Erro.xhtml" />
 				</p:submenu>
 
-				<p:submenu styleClass="menu" label="Cadastrar Usuário" icon="ui-icon-gear">
+				<p:submenu styleClass="menu" label="Cadastrar Usuário"
+					icon="ui-icon-gear">
 					<p:menuitem value="Usuario" icon="ui-icon-newwin"
 						url="/Usuario/Usuario.xhtml" />
 					<p:separator />
@@ -53,93 +56,102 @@
 				</p:submenu>
 
 			</p:menubar>
-			
-			<p:messages autoUpdate="true"/>
-	    	<p:toolbar style="margin-top: 20px">
-	    		<p:toolbarGroup>
-	    			<p:commandButton action="#{pessoaRefBean.pesquisaPessoa}"  value="Pesquisar" update="@form"  />
-	    			<p:inputText  value="#{pessoaRefBean.filtro.pesquisanome}" style="position:relative; left:px;"></p:inputText>
-	    		</p:toolbarGroup>
-	    		<p:toolbarGroup align="right">
-	    			<p:button href="PessoaRef.xhtml" value="Novo" />
-	    		</p:toolbarGroup>
-	    		<p:toolbarGroup>
-	    				<p:menubar  autoDisplay="false" style= " left: 700%;">
-	    	<p:submenu label="Mapeamento" >
-					<p:menuitem value="Cidade Nova" url="https://goo.gl/maps/kzNFl" />
-					<p:menuitem value="Alto dos Bastos" url="http://goo.gl/w78iew" />
-					<p:menuitem value="Alto do Cruzeiro" url="http://goo.gl/DFsmDJ" />
-					<p:menuitem value="Alto da Cooperativa" url="http://goo.gl/ktQsdF" />
-					<p:menuitem value="Carro Quebrado" url="http://goo.gl/eLbSOT" />
-					<p:menuitem value="Conj. Sr. Batista" url="http://goo.gl/FDUVtZ" />
-					<p:menuitem value="Corrente" url="http://goo.gl/ota8qa" />
-					<p:menuitem value="Dner" url="http://goo.gl/TYius4" />
-					<p:menuitem value="Joaninha Sobral" url="http://goo.gl/6wUmFX" />
-					<p:menuitem value="Manoel Mariano" url="http://goo.gl/LNUquj" />
-					<p:menuitem value="Novo Centro" url="http://goo.gl/dWJ2lr" />
-					<p:menuitem value="Rosarão" url="http://goo.gl/m9dV21" />
-					<p:menuitem value="Sol Nascente" url="http://goo.gl/rcFYo8" />
-					<p:menuitem value="Tamarinas" url="http://goo.gl/b8MkkP" />
-				</p:submenu>
-				</p:menubar>
-				</p:toolbarGroup>
-	    	</p:toolbar>
-	    	
-	    	
-	    	
-	    	<p:dataTable  id="tabpessoaref"  var="pessoas" value="#{pessoaRefBean.pessoalist}"
-                          style="margin: auto;  margin-top: 20px;" emptyMessage="Nenhum pedido encontrado."
-                          rows="10" paginator="true" paginatorAlwaysVisible="true" paginatorPosition="bottom">
 
-                <p:column headerText="ID">
-                    <h:outputText value="#{pessoas.id}"  />
-                </p:column>
-                
-                <p:column headerText="Pessoa Referência">
-                    <h:outputText value="#{pessoas.pessoareferencia}"  />
-                </p:column>
-                
-                <p:column headerText="Apelido">
-                    <h:outputText value="#{pessoas.apelido}"  />
-                </p:column>
-                               
-                <p:column headerText="Nis de referência">
-                    <h:outputText value="#{pessoas.nisref}"  />
-                </p:column>
-                
-                
-                               
-                <p:column headerText="Endereco">
-                    <h:outputText value="#{pessoas.endereco}"  />
-                </p:column>
- 
- 				<p:column headerText="Bairro">
-                    <h:outputText value="#{pessoas.bairro}"  />
-                </p:column>
-                               
-               
-                
-                <p:column headerText="Ponto de Referência">
-                    <h:outputText value="#{pessoas.pontoref}"  />
-                </p:column>
-                
-                <p:column headerText="Telefone">
-                    <h:outputText value="#{pessoas.telefone}"  />
-                </p:column>
-          
-   			            
-                <p:column  style="text-align: center; width: 50px">
-                    <p:button  outcome="PessoaRef.xhtml" icon="ui-icon-pencil"  title="Editar">
-                        <f:param name="pessoas" value="#{pessoas.id}" />
-                    </p:button>
-                    <p:commandButton icon="ui-icon-trash"   title="Excluir" update=":frmPesquisa:confirmacaoExclusaoDialog"
+			<p:messages autoUpdate="true" />
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton action="#{pessoaRefBean.pesquisaPessoa}"
+						value="Pesquisar" update="@form" />
+					<p:inputText value="#{pessoaRefBean.filtro.pesquisanome}"
+						style="position:relative; left:px;"></p:inputText>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button href="PessoaRef.xhtml" value="Novo" />
+				</p:toolbarGroup>
+				<p:toolbarGroup>
+					<p:menubar autoDisplay="false" style=" left: 700%;">
+						<p:submenu label="Mapeamento">
+							<p:menuitem value="Cidade Nova" url="https://goo.gl/maps/kzNFl" />
+							<p:menuitem value="Alto dos Bastos" url="http://goo.gl/w78iew" />
+							<p:menuitem value="Alto do Cruzeiro" url="http://goo.gl/DFsmDJ" />
+							<p:menuitem value="Alto da Cooperativa"
+								url="http://goo.gl/ktQsdF" />
+							<p:menuitem value="Carro Quebrado" url="http://goo.gl/eLbSOT" />
+							<p:menuitem value="Conj. Sr. Batista" url="http://goo.gl/FDUVtZ" />
+							<p:menuitem value="Corrente" url="http://goo.gl/ota8qa" />
+							<p:menuitem value="Dner" url="http://goo.gl/TYius4" />
+							<p:menuitem value="Joaninha Sobral" url="http://goo.gl/6wUmFX" />
+							<p:menuitem value="Manoel Mariano" url="http://goo.gl/LNUquj" />
+							<p:menuitem value="Novo Centro" url="http://goo.gl/dWJ2lr" />
+							<p:menuitem value="Rosarão" url="http://goo.gl/m9dV21" />
+							<p:menuitem value="Sol Nascente" url="http://goo.gl/rcFYo8" />
+							<p:menuitem value="Tamarinas" url="http://goo.gl/b8MkkP" />
+						</p:submenu>
+					</p:menubar>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+
+			<p:dataTable id="tabpessoaref" var="pessoas"
+				value="#{pessoaRefBean.pessoalist}"
+				style="margin: auto;  margin-top: 20px;"
+				emptyMessage="Nenhum pedido encontrado." rows="10" paginator="true"
+				paginatorAlwaysVisible="true" paginatorPosition="bottom">
+
+				<p:column headerText="ID">
+					<h:outputText value="#{pessoas.id}" />
+				</p:column>
+
+				<p:column headerText="Pessoa Referência">
+					<h:outputText value="#{pessoas.pessoareferencia}" />
+				</p:column>
+
+				<p:column headerText="Apelido">
+					<h:outputText value="#{pessoas.apelido}" />
+				</p:column>
+
+				<p:column headerText="Nis de referência">
+					<h:outputText value="#{pessoas.nisref}" />
+				</p:column>
+
+
+
+				<p:column headerText="Endereco">
+					<h:outputText value="#{pessoas.endereco}" />
+				</p:column>
+
+				<p:column headerText="Bairro">
+					<h:outputText value="#{pessoas.bairro}" />
+				</p:column>
+
+
+
+				<p:column headerText="Ponto de Referência">
+					<h:outputText value="#{pessoas.pontoref}" />
+				</p:column>
+
+				<p:column headerText="Telefone">
+					<h:outputText value="#{pessoas.telefone}" />
+				</p:column>
+
+
+				<p:column style="text-align: center; width: 50px">
+				<p:button outcome="questionref.xhtml" title="Acompanhar" icon="ui-icon-person" />
+					<p:button outcome="PessoaRef.xhtml" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="pessoas" value="#{pessoas.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						update=":frmPesquisa:confirmacaoExclusaoDialog"
 						oncomplete="confirmacaoExclusao.show()" process="@this">
-						<f:setPropertyActionListener value="#{pessoas}" target="#{pessoaRefBean.pessoaSelecionada}"></f:setPropertyActionListener>
-						</p:commandButton>
-                </p:column>
-            </p:dataTable>
-            
-            <p:confirmDialog header="Exclusão do item"
+						<f:setPropertyActionListener value="#{pessoas}"
+							target="#{pessoaRefBean.pessoaSelecionada}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog header="Exclusão do item"
 				message="Tem certeza que deseja excluir a Pessoa de Referência #{pessoaRefBean.pessoaSelecionada.pessoareferencia}?"
 				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
 				<p:button value="Não"
@@ -149,8 +161,8 @@
 					action="#{pessoaRefBean.excluir}" process="@this"
 					update=":frmPesquisa:tabpessoaref" />
 			</p:confirmDialog>
-	    	
-	    	
-    	</h:form>
-    </ui:define>
+
+
+		</h:form>
+	</ui:define>
 </ui:composition>

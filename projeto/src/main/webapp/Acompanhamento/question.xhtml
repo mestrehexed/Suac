@@ -96,7 +96,8 @@
 			</p:selectOneRadio>
 			<p:inputTextarea />
 
-			<p:commandButton  value="Salvar" action="#{acompanhamentoBean.salvar}"></p:commandButton>
+			<p:commandButton  value="Salvar" action="#{acompanhamentoBean.salvar}"><f:setPropertyActionListener value="#{quest}"
+							target="#{acompanhamentoBean.acompanhar}"></f:setPropertyActionListener></p:commandButton>
 					
 			<p:dataTable id="tabquestion" var="quest"
 				value="#{acompanhamentoBean.acompanhamento}"
@@ -143,6 +144,7 @@
 				</p:column>
 
 				<p:column style="text-align: center; width: 50px">
+				<p:commandButton  value="Salvar" action="#{acompanhamentoBean.salvar}"></p:commandButton>
 					<p:button outcome="Acompanhamento.xhtml" icon="ui-icon-pencil"
 						title="Editar">
 						<f:param name="acom" value="#{acom.id}" />

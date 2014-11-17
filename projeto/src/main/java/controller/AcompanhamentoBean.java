@@ -81,7 +81,14 @@ public class AcompanhamentoBean implements Serializable {
 
 	public String salvar() {
 		FacesUtil.addInfoMessage("Pessoa Salva com Sucesso!");
-		acompanhar = reposy.guardar(acompanhar);
+		reposy.guardar1(acompanhar);
+		return "Acompanhamento.xhtml";
+
+	}
+	
+	public String salvar2() {
+		FacesUtil.addInfoMessage("Pessoa Salva com Sucesso!");
+		reposy.guardar(acompanhar);
 		return "Acompanhamento.xhtml";
 
 	}
