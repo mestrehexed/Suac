@@ -137,7 +137,8 @@
 
 
 				<p:column style="text-align: center; width: 50px">
-				<p:button outcome="questionref.xhtml" title="Acompanhar" icon="ui-icon-person" />
+				<p:button outcome="questionref.xhtml" title="Acompanhar" icon="ui-icon-person" >
+				<f:param name="pessoas" value="#{pessoas.id}" /></p:button>
 					<p:button outcome="PessoaRef.xhtml" icon="ui-icon-pencil"
 						title="Editar">
 						<f:param name="pessoas" value="#{pessoas.id}" />

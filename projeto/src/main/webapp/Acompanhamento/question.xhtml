@@ -5,9 +5,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
+	
 
 
 	<ui:define name="corpo">
+	
+	<f:metadata>
+			<o:viewParam name="acom" value="#{acompanhamentoBean.acompanhar}"></o:viewParam>
+		</f:metadata>
+	
+	
+	
+	
 		<h:form id="frmPesquisa">
 			<br></br>
 			<p:outputLabel value="Sabe Ler e Escrever?" />
@@ -96,9 +105,11 @@
 			</p:selectOneRadio>
 			<p:inputTextarea />
 
-			<p:commandButton  value="Salvar" action="#{acompanhamentoBean.salvar}"><f:setPropertyActionListener value="#{quest}"
-							target="#{acompanhamentoBean.acompanhar}"></f:setPropertyActionListener></p:commandButton>
-					
+			<p:commandButton update="@form" value="Salvar"
+				action="#{acompanhamentoBean.salvar}"></p:commandButton>
+				
+				<p:button title="Voltar" value="Voltar" outcome="Acompanhamento.xhtml"/>
+
 			<p:dataTable id="tabquestion" var="quest"
 				value="#{acompanhamentoBean.acompanhamento}"
 				style="margin: auto;  margin-top: 20px;"
@@ -144,15 +155,14 @@
 				</p:column>
 
 				<p:column style="text-align: center; width: 50px">
-				<p:commandButton  value="Salvar" action="#{acompanhamentoBean.salvar}"></p:commandButton>
 					<p:button outcome="Acompanhamento.xhtml" icon="ui-icon-pencil"
 						title="Editar">
-						<f:param name="acom" value="#{acom.id}" />
+						<f:param name="quest" value="#{quest.id}" />
 					</p:button>
 					<p:commandButton id="ex" icon="ui-icon-trash" title="Excluir"
 						update=":frmPesquisa:confirmacaoExclusaoDialog"
 						oncomplete="confirmacaoExclusao.show()" process="@this">
-						<f:setPropertyActionListener value="#{acom}"
+						<f:setPropertyActionListener value="#{quest}"
 							target="#{acompanhamentoBean.acompanhar}"></f:setPropertyActionListener>
 					</p:commandButton>
 				</p:column>
