@@ -103,6 +103,8 @@
 
 			<p:commandButton value="Salvar"
 				action="#{pessoaRefBean.adcionarPessoa}"></p:commandButton>
+				
+				<p:button title="Voltar" value="Voltar" outcome="ExibirPessoaRef.xhtml"/>
 
 			<p:dataTable id="tabquestionref" var="questref"
 				value="#{pessoaRefBean.pessoalist}"

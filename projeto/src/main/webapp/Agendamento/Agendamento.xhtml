@@ -3,14 +3,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
-	<ui:define name="Tela">Tela Principal</ui:define>
+	
 
 	<ui:define name="corpo">
+		
+		
+		
 
+		<h:form id="frmPesquisa">
 
-		<h:form style="margin-top: 20px">
 			<p:menubar styleClass="menubar" autoDisplay="false">
 				<p:submenu styleClass="menu" label="Atendimento"
 					icon="ui-icon-document">
@@ -52,16 +55,29 @@
 				</p:submenu>
 
 			</p:menubar>
+			
+			<div class="div_agendamento">
+			<p:outputLabel value="Data"/>
+			<p:inputMask  mask="99/99/9999" value="#{agendamentoBean.agendamento.data}"></p:inputMask>
+			</div>	
+			
+			<div class="div_agendamento">
+			<p:outputLabel value="Local"/>
+			<p:inputText  value="#{agendamentoBean.agendamento.local}"></p:inputText>
+			</div>	
+			
+			<div class="div_agendamento">
+			<p:outputLabel value="Horario"/>
+			<p:inputMask  mask="99:99Hrs" value="#{agendamentoBean.agendamento.hora}"></p:inputMask>
+			</div>	
+			
+			<div class="div_agendamento">
+			<p:outputLabel value="Observação"/>
+			<p:inputTextarea   value="#{agendamentoBean.agendamento.obs}"></p:inputTextarea>
+			</div>	
 
-			<p:messages autoUpdate="true" />
+			
+
 		</h:form>
-		<center>
-			<div id="painel" style="border: none; width: 100%; margin-top: 20px">
-				<h:graphicImage styleClass="telaprincipal" library="images"
-					name="telaprincipal.jpg" />
-			</div>
-		</center>
-
-
 	</ui:define>
 </ui:composition>

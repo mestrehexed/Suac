@@ -154,18 +154,7 @@
 					<h:outputText value="#{quest.question10}" />
 				</p:column>
 
-				<p:column style="text-align: center; width: 50px">
-					<p:button outcome="Acompanhamento.xhtml" icon="ui-icon-pencil"
-						title="Editar">
-						<f:param name="quest" value="#{quest.id}" />
-					</p:button>
-					<p:commandButton id="ex" icon="ui-icon-trash" title="Excluir"
-						update=":frmPesquisa:confirmacaoExclusaoDialog"
-						oncomplete="confirmacaoExclusao.show()" process="@this">
-						<f:setPropertyActionListener value="#{quest}"
-							target="#{acompanhamentoBean.acompanhar}"></f:setPropertyActionListener>
-					</p:commandButton>
-				</p:column>
+				
 
 			</p:dataTable>
 
