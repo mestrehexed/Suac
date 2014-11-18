@@ -5,12 +5,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
-	
+
 
 	<ui:define name="corpo">
 		
 		
-		
+		<f:metadata>
+		<o:viewParam name="agen"  value="#{agendamentoBean.agendamento}"></o:viewParam>
+		</f:metadata>
+
+
 
 		<h:form id="frmPesquisa">
 
@@ -35,8 +39,8 @@
 
 				<p:submenu styleClass="menu" label="Agendamento" icon="ui-icon-gear">
 					<p:menuitem value="Novo" url="/Agendamento/Agendamento.xhtml" />
-					</p:submenu>	
-					
+				</p:submenu>
+
 
 				<p:submenu styleClass="menu" label="Cadastrar Usuário"
 					icon="ui-icon-gear">
@@ -56,27 +60,90 @@
 
 			</p:menubar>
 			
-			<div class="div_agendamento">
-			<p:outputLabel value="Data"/>
-			<p:inputMask  mask="99/99/9999" value="#{agendamentoBean.agendamento.data}"></p:inputMask>
-			</div>	
-			
-			<div class="div_agendamento">
-			<p:outputLabel value="Local"/>
-			<p:inputText  value="#{agendamentoBean.agendamento.local}"></p:inputText>
-			</div>	
-			
-			<div class="div_agendamento">
-			<p:outputLabel value="Horario"/>
-			<p:inputMask  mask="99:99Hrs" value="#{agendamentoBean.agendamento.hora}"></p:inputMask>
-			</div>	
-			
-			<div class="div_agendamento">
-			<p:outputLabel value="Observação"/>
-			<p:inputTextarea   value="#{agendamentoBean.agendamento.obs}"></p:inputTextarea>
-			</div>	
+			<p:toolbarGroup>
+					<p:commandButton action="#{agendamentoBean.pesquisar}"
+						value="Pesquisar" update="@form" />
+					<p:inputText value="#{agendamentoBean.filtroagen.pesquisanome}"
+						style="position:relative; left:px;"></p:inputText>
+				</p:toolbarGroup>
 
+			<p:messages autoUpdate="true" />
+
+			<div class="div_agendamento">
+				<p:outputLabel value="Data" />
+				<p:inputMask mask="99/99/9999"
+					value="#{agendamentoBean.agendamento.data}"></p:inputMask>
+			</div>
+
+			<div class="div_agendamento">
+				<p:outputLabel value="Local" />
+				<p:inputText value="#{agendamentoBean.agendamento.local}"></p:inputText>
+			</div>
+
+			<div class="div_agendamento">
+				<p:outputLabel value="Horario" />
+				<p:inputMask mask="99:99 ás 99:99"
+					value="#{agendamentoBean.agendamento.hora}"></p:inputMask>
+			</div>
+
+			<div class="div_agendamento">
+				<p:outputLabel value="Observação" />
+				<p:inputTextarea value="#{agendamentoBean.agendamento.obs}"></p:inputTextarea>
+			</div>
+
+			<p:commandButton id="salvar" value="Salvar" action="#{agendamentoBean.salvar}" update="@form" />
+
+
+
+
+			<p:dataTable id="tabagendamento" var="agen"
+				value="#{agendamentoBean.listaagendamento}"
+				style="margin: auto;  margin-top: 20px;"
+				emptyMessage="Nenhuma informação encontrada." rows="5"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom">
+
+				<p:column headerText="ID">
+					<h:outputText value="#{agen.id}" />
+				</p:column>
+				<p:column headerText="Data">
+					<h:outputText value="#{agen.data}" />
+				</p:column>
+				<p:column headerText="Local">
+					<h:outputText value="#{agen.local}" />
+				</p:column>
+				<p:column headerText="Hora">
+					<h:outputText value="#{agen.hora}" />
+				</p:column>
+				<p:column headerText="Obs">
+					<h:outputText value="#{agen.obs}" />
+				</p:column>
+				<p:column >
+				<p:button outcome="Agendamento.xhtml" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="agen" value="#{agen.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						update=":frmPesquisa:confirmacaoExclusaoDialog"
+						oncomplete="confirmacaoExclusao.show()" process="@this">
+						<f:setPropertyActionListener value="#{agen}"
+							target="#{agendamentoBean.agendamento}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
 			
+			<p:confirmDialog header="Exclusão do item"
+				message="Tem certeza que deseja excluir a Pessoa de Referência #{pessoaRefBean.pessoaSelecionada.pessoareferencia}?"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					onclick="confirmacaoExclusao.hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="confirmacaoExclusao.hide();"
+					action="#{agendamentoBean.excluir}" process="@this"
+					update=":frmPesquisa:tabagendamento" />
+			</p:confirmDialog>
+
 
 		</h:form>
 	</ui:define>
