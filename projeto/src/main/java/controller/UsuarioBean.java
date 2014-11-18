@@ -55,7 +55,7 @@ public class UsuarioBean implements Serializable {
 	private String email;
 	private String senha;
 	private String recuemail;
-	private String recucpf;
+	private String recutelefone;
 	private static Usuario recuperar;
 
 	// contrutor
@@ -104,7 +104,7 @@ public class UsuarioBean implements Serializable {
 		Session sessao = manager.unwrap(Session.class);
 		Criteria cri = sessao.createCriteria(Usuario.class);
 		cri.add(Restrictions.eq("email", getRecuemail()));
-		cri.add(Restrictions.eq("nome", getRecucpf()));
+		cri.add(Restrictions.eq("telefone", getRecutelefone()));
 		recuperar = (Usuario) cri.uniqueResult();
 		if (recuperar!=null) {
 
@@ -183,15 +183,14 @@ public class UsuarioBean implements Serializable {
 		this.recuemail = recuemail;
 	}
 
-	public String getRecucpf() {
+	
 
-		// recucpf= u.getCpf();
-
-		return recucpf;
+	public String getRecutelefone() {
+		return recutelefone;
 	}
 
-	public void setRecucpf(String recucpf) {
-		this.recucpf = recucpf;
+	public void setRecutelefone(String recutelefone) {
+		this.recutelefone = recutelefone;
 	}
 
 	public Usuario getRecuperar() {

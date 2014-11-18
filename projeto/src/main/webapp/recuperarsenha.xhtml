@@ -18,8 +18,8 @@
     				<p:outputLabel value="E-mail" />
     				<p:inputText value="#{usuarioBean.recuemail}" size="30" />
     				
-    				<p:outputLabel value="CPF" />
-    				<p:inputText  value="#{usuarioBean.recucpf}"  size="30" />
+    				<p:outputLabel value="Telefone" />
+    				<p:inputMask mask="(99)9999-9999" value="#{usuarioBean.recutelefone}"  size="30" />
     				
     				<h:panelGroup/>
     				<p:commandButton action="#{usuarioBean.listRecuperarLogin()}"  value="Recuperar" />
