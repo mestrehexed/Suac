@@ -46,6 +46,7 @@ public class PessoaRefBean implements Serializable{
 	
 	private PessoaRef pessoaSelecionada;
 	private List<PessoaRef> pessoalist;
+	private List<PessoaRef> pessoalist2;
 	
 	@Inject
 	private PessoaRepository pessoarepository;
@@ -84,7 +85,7 @@ public class PessoaRefBean implements Serializable{
 	//pesquisar pessoa
 	@Inject
 	public void pesquisaPessoa(){
-		pessoalist = pessoarepository.filtrados(filtro);
+		pessoalist2 = pessoarepository.filtrados(filtro);
 	}
 	
 	
@@ -130,6 +131,79 @@ public class PessoaRefBean implements Serializable{
 	public void setPessoaSelecionada(PessoaRef pessoaSelecionada) {
 		this.pessoaSelecionada = pessoaSelecionada;
 	}
+
+
+
+
+	public ServicePessoa getPessoaservice() {
+		return pessoaservice;
+	}
+
+
+
+
+	public void setPessoaservice(ServicePessoa pessoaservice) {
+		this.pessoaservice = pessoaservice;
+	}
+
+
+
+
+	public String getPessoaSelecionado2() {
+		return pessoaSelecionado2;
+	}
+
+
+
+
+	public void setPessoaSelecionado2(String pessoaSelecionado2) {
+		this.pessoaSelecionado2 = pessoaSelecionado2;
+	}
+
+
+
+
+	public List<PessoaRef> getPessoalist2() {
+		return pessoalist2;
+	}
+
+
+
+
+	public void setPessoalist2(List<PessoaRef> pessoalist2) {
+		this.pessoalist2 = pessoalist2;
+	}
+
+
+
+
+	public PessoaRepository getPessoarepository() {
+		return pessoarepository;
+	}
+
+
+
+
+	public void setPessoarepository(PessoaRepository pessoarepository) {
+		this.pessoarepository = pessoarepository;
+	}
+
+
+
+
+	public void setFiltro(FiltroPessoa filtro) {
+		this.filtro = filtro;
+	}
+
+
+
+
+	public void setPessoalist(List<PessoaRef> pessoalist) {
+		this.pessoalist = pessoalist;
+	}
     
+	
+	
+	
 
 }
