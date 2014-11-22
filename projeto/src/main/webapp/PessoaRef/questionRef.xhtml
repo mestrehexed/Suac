@@ -15,7 +15,7 @@
 
 		<h:form id="frmPesquisa">
 			<br></br>
-			<p:outputLabel value="Sabe Ler e Escrever?" />
+			<p:outputLabel value="1.Tem energia na residência?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question1}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -23,7 +23,7 @@
 			</p:selectOneRadio>
 
 			<br></br>
-			<p:outputLabel value="Estuda?" />
+			<p:outputLabel value="2.Tem água encanada na residencia?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question2}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -31,7 +31,7 @@
 			</p:selectOneRadio>
 
 			<br></br>
-			<p:outputLabel value="Possui Carteira de Trabalho?" />
+			<p:outputLabel value="3.Tem rede de rede de esgoto?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question3}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -39,7 +39,7 @@
 			</p:selectOneRadio>
 
 			<br></br>
-			<p:outputLabel value="Possui Qualificação Profissional?" />
+			<p:outputLabel value="4.Tem telefone fixo na residencia?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question4}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -48,7 +48,7 @@
 			<p:inputTextarea />
 
 			<br></br>
-			<p:outputLabel value="Tem alguma Deficiencia?" />
+			<p:outputLabel value="5.Tem televisão na residencia?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question5}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -57,7 +57,7 @@
 			<p:inputTextarea />
 
 			<br></br>
-			<p:outputLabel value="Já foi preso?" />
+			<p:outputLabel value="6.Tem empregado na residencia?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question6}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -66,7 +66,7 @@
 			<p:inputTextarea />
 
 			<br></br>
-			<p:outputLabel value="Já contraiu catapora?" />
+			<p:outputLabel value="7. Tem banheiro??" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question7}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -75,7 +75,7 @@
 			<p:inputTextarea />
 
 			<br></br>
-			<p:outputLabel value="Já teve dengue?" />
+			<p:outputLabel value="8.Acolhe pessoas desconhecida em sua casa com frequência?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question8}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -84,7 +84,7 @@
 			<p:inputTextarea />
 
 			<br></br>
-			<p:outputLabel value=" Recebe algum auxilio do governo?" />
+			<p:outputLabel value=" 9.Todos na casa sabem ler e escrever?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question9}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -93,7 +93,7 @@
 			<p:inputTextarea />
 
 			<br></br>
-			<p:outputLabel value=" Possui companheiro?" />
+			<p:outputLabel value=" 10.Tem doador de órgão?" />
 			<p:selectOneRadio value="#{pessoaRefBean.p.question10}"
 				required="true">
 				<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -107,14 +107,14 @@
 				<p:button title="Voltar" value="Voltar" outcome="ExibirPessoaRef.xhtml"/>
 
 			<p:dataTable id="tabquestionref" var="questref"
-				value="#{pessoaRefBean.pessoalist}"
+				value="#{pessoaRefBean.pessoalist2}"
 				style="margin: auto;  margin-top: 20px;"
 				emptyMessage="Nenhuma informação encontrada." rows="5"
 				paginator="true" paginatorAlwaysVisible="true"
 				paginatorPosition="bottom">
 
-				<p:column headerText="ID">
-					<h:outputText value="#{questref.id}" />
+				<p:column headerText="Pessoa Referência">
+					<h:outputText value="#{questref.pessoareferencia}" />
 				</p:column>
 				<p:column headerText="Questão 1">
 					<h:outputText value="#{questref.question1}" />

@@ -62,9 +62,9 @@
 			
 			<p:toolbarGroup>
 					<p:commandButton action="#{agendamentoBean.pesquisar}"
-						value="Pesquisar" update="@form" />
-					<p:inputText value="#{agendamentoBean.filtroagen.pesquisanome}"
-						style="position:relative; left:px;"></p:inputText>
+						value="pesquisar data" update="@form" />
+					<p:inputMask mask="99/99/9999" value="#{agendamentoBean.filtroagen.pesquisanome}"
+						style="position:relative; left:px;"/>
 				</p:toolbarGroup>
 
 			<p:messages autoUpdate="true" />
