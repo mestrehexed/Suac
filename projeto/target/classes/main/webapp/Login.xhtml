@@ -14,16 +14,16 @@
     		<h1>Login</h1>
     		<p:messages autoUpdate="true"/>
     		<h:form id="frm">
-    			<h:panelGrid columns="2" styleClass="grid-login">
+    			<h:panelGrid  columns="2" styleClass="grid-login">
     				<p:outputLabel value="E-mail" />
-    				<p:inputText value="#{usuarioBean.email}" size="30" />
+    				<p:inputText value="#{usuarioBean.email}" size="30" style="position: relative; left:-20%;" />
     				
     				<p:outputLabel value="Senha" />
-    				<p:password value="#{usuarioBean.senha}" size="30" />
+    				<p:password value="#{usuarioBean.senha}" size="30" style="position: relative; left:-20%;" />
     				
     				<h:panelGroup/>
-    				<p:commandButton action="#{usuarioBean.autentica}"  value="Login" />
-    				<p:button outcome="recuperarsenha.xhtml"  value="Recuperar Senha" />
+    				<p:commandButton action="#{usuarioBean.autentica}"  value="Login" style="position: relative; margin-top: 5.5px;" />
+    				<p:button outcome="recuperarsenha.xhtml"  value="Recuperar Senha" style="position: relative; margin-top: -33.5px;" />
     			</h:panelGrid>
     		</h:form>
     	</div>

@@ -72,23 +72,23 @@
 			<div class="div_agendamento">
 				<p:outputLabel value="Data" />
 				<p:inputMask mask="99/99/9999"
-					value="#{agendamentoBean.agendamento.data}"></p:inputMask>
+					value="#{agendamentoBean.agendamento.data}" style="position: relative; left: 15px;"></p:inputMask>
 			</div>
 
 			<div class="div_agendamento">
 				<p:outputLabel value="Local" />
-				<p:inputText value="#{agendamentoBean.agendamento.local}"></p:inputText>
+				<p:inputText value="#{agendamentoBean.agendamento.local}" style="position: relative; left: 15px;"></p:inputText>
 			</div>
 
 			<div class="div_agendamento">
 				<p:outputLabel value="Horario" />
 				<p:inputMask mask="99:99 ás 99:99"
-					value="#{agendamentoBean.agendamento.hora}"></p:inputMask>
+					value="#{agendamentoBean.agendamento.hora}" style="position: relative; left: 15px;"></p:inputMask>
 			</div>
 
 			<div class="div_agendamento">
-				<p:outputLabel value="Observação" />
-				<p:inputTextarea value="#{agendamentoBean.agendamento.obs}"></p:inputTextarea>
+				<p:outputLabel value="Observação" style="position: relative; margin-top: -20px; left: -15px;" />
+				<p:inputTextarea value="#{agendamentoBean.agendamento.obs}" style="position: relative; left: -10px;"></p:inputTextarea>
 			</div>
 
 			<p:commandButton id="salvar" value="Salvar" action="#{agendamentoBean.salvar}" update="@form" />
