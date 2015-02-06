@@ -5,14 +5,22 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import model.Grupo;
 
 
 
@@ -46,6 +54,8 @@ public class Usuario implements Serializable {
 	private String cpf;
 	
 	private String confirmasenha;
+	
+	private List<Grupo> grupos = new ArrayList<>();
 	
 	@Id
 	@GeneratedValue
@@ -90,6 +100,16 @@ public class Usuario implements Serializable {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "grupo_id"))
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}
 
 	public String getTelefone() {
