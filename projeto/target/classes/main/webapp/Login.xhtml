@@ -12,17 +12,17 @@
     
     	<div id="login-dialog">
     		<h1>Login</h1>
-    		<p:messages autoUpdate="true"/>
-    		<h:form id="frm">
+    		<p:messages id="messages" autoUpdate="true" closable="true" />
+    		<h:form id="frm" prependId="false">
     			<h:panelGrid  columns="2" styleClass="grid-login">
     				<p:outputLabel value="E-mail" />
-    				<p:inputText value="#{usuarioBean.email}" size="30" style="position: relative; left:-20%;" />
+    				<p:inputText id="j_username" value="#{loginBean.email}" size="30" style="position: relative; left:-20%;" />
     				
     				<p:outputLabel value="Senha" />
-    				<p:password value="#{usuarioBean.senha}" size="30" style="position: relative; left:-20%;" />
+    				<p:password id="j_password"  size="30" style="position: relative; left:-20%;" />
     				
     				<h:panelGroup/>
-    				<p:commandButton action="#{usuarioBean.autentica}"  value="Login" style="position: relative; margin-top: 5.5px;" />
+    				<p:commandButton value="Login" action="#{loginBean.login}" ajax="false"  style="position: relative; margin-top: 5.5px;" />
     				<p:button outcome="recuperarsenha.xhtml"  value="Recuperar Senha" style="position: relative; margin-top: -33.5px;" />
     			</h:panelGrid>
     		</h:form>

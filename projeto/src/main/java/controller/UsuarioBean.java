@@ -82,7 +82,7 @@ public class UsuarioBean implements Serializable {
 
 	}
 
-	@Inject
+	/*@Inject
 	public String autentica() {
 		sessao = manager.unwrap(Session.class);
 		Criteria cri = sessao.createCriteria(Usuario.class);
@@ -98,7 +98,7 @@ public class UsuarioBean implements Serializable {
 
 		}
 
-	}
+	}*/
 
 	public String listRecuperarLogin() {
 		Session sessao = manager.unwrap(Session.class);
